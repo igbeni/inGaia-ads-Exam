@@ -104,6 +104,7 @@ class Realty(db.Model):
     __tablename__ = 'realty'
 
     id = db.Column(db.String, primary_key=True)
+    rId = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
     published_on = db.Column(db.DateTime, nullable=False)
 

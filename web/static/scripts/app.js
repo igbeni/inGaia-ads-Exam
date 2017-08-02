@@ -11,6 +11,11 @@ angular.module('inGaiaApp', ['ngMaterial', 'ui.router'])
                 templateUrl: 'static/views/partial-home.html',
                 controller: 'HomeController'
             })
+            .state('log', {
+                url: '/log/{id}/{page}',
+                templateUrl: 'static/views/partial-realty-log.html',
+                controller: 'LogController'
+            })
             .state('detail', {
                 url: '/detail/{id}',
                 templateUrl: 'static/views/partial-detail.html',

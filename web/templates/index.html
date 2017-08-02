@@ -32,7 +32,12 @@
 <div layout="column">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2 flex md-truncate>inGaia - Ads Exam</h2>
+            <h2 flex md-truncate><a ui-sref="home({page: 0})">inGaia - Ads Exam</a></h2>
+
+            <md-input-container md-no-float class="md-block" style="display: flex;">
+                <input ng-model="query" type="text" placeholder="Search">
+                <md-icon md-font-set="material-icons">search</md-icon>
+            </md-input-container>
         </div>
     </md-toolbar>
 
