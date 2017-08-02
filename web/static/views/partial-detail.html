@@ -1,0 +1,31 @@
+<div class="card text-center">
+    <div class="card-header md-hue-2 white-text">
+        {{ realty.purpose.name }}
+    </div>
+    <div>
+        <h4 class="card-title">{{ realty.title }}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="row">Listing Type</th>
+                <td>{{ realty.listing_type.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Location</th>
+                <td>{{ realty.location.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">City</th>
+                <td>{{ realty.location.city.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">UF</th>
+                <td>{{ realty.location.city.state.uf }}</td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="card-footer text-muted md-hue-2 white-text">
+        <p>{{ realty.published_on }}</p>
+    </div>
+</div>

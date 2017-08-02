@@ -1,0 +1,40 @@
+<ul class="pagination">
+    <li class="page-item" ng-if="showPreviousButton" ui-sref="home({page: previousPage})">
+        <span class="page-link" aria-label="Previous">
+            <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
+            <span class="sr-only">Previous</span>
+        </span>
+    </li>
+
+    <li style="flex: 1;"></li>
+
+    <li class="page-item" ui-sref="home({page: nextPage})">
+        <span class="page-link" aria-label="Next">
+            <span class="sr-only">Next</span>
+            <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
+        </span>
+    </li>
+</ul>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Published On</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat="realty in realties">
+        <th scope="row">{{ realty.title }}</th>
+        <td>{{ realty.published_on }}</td>
+        <td class="actions">
+            <a ui-sref="detail({id : realty.id })">
+                <md-icon style="color: #33b5e5;" md-font-set="material-icons">info</md-icon>
+            </a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>

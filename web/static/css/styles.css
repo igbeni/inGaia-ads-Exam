@@ -1,0 +1,102 @@
+caption, th {
+    text-align: left;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    /*border-bottom: 2px solid #eceeef;*/
+}
+
+.form-control, .form-inline .form-check, .table {
+    width: 100%;
+}
+
+.table {
+    max-width: 100%;
+}
+
+.table td.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.card .card-footer {
+    background-color: rgb(63, 81, 181);
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.card-footer:last-child {
+    border-radius: 0 0 -webkit-calc(.25rem - 1px) -webkit-calc(.25rem - 1px);
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+
+.white-text {
+    color: #FFF !important;
+}
+
+.card-footer {
+    border-top: 1px solid rgba(0, 0, 0, .125);
+}
+
+.card-title {
+    margin-bottom: .75rem;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.card {
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.card-header:first-child {
+    border-radius: -webkit-calc(.25rem - 1px) -webkit-calc(.25rem - 1px) 0 0;
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.card {
+    border: 0;
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+.card-footer, .card-header {
+    padding: .75rem 1.25rem;
+    background-color: rgb(63, 81, 181);
+}
+
+.pagination {
+    list-style-type: none;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-item {
+    cursor: pointer;
+}
