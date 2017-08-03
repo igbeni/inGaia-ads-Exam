@@ -36,7 +36,6 @@ angular.module('inGaiaApp')
             $state.go('search', {'page': 0, 'asc': $scope.asc ? 1 : 0, 'query': $scope.query});
         }
 
-$log.info($scope.query)
         RealtyService.searchTitle($scope.query).then(function (response) {
             if (response.statusText === 'OK') {
                 $scope.realties = response.data.data;
