@@ -119,35 +119,33 @@ def get_realty_info(realtyId):
 def search_text(page=0, limit=50):
     if request.method == 'POST':
         title = request.form['query']
-        return title
+        query = ''
 
-        # query = ''
-        #
-        # i = 0
-        # for s in title.split():
-        #     if i > 0:
-        #         query += ' & '
-        #     query += s
-        #     i += 1
-        #
-        # sql = text(
-        #     'select id, "rId", title, published_on from realty where to_tsvector(title) @@ '
-        #     'to_tsquery(\'' + query + '\') order by published_on desc  limit ' + str(
-        #         limit) + ' offset ' + str(page * limit))
-        # result = db.engine.execute(sql)
-        # realties = []
-        # for row in result:
-        #     realties.append({'id': row[0], 'r_id': row[1], 'title': row[2], 'published_on': row[3]})
-        #
-        # sql = text(
-        #     'select count(*) from realty where to_tsvector(title) @@ '
-        #     'to_tsquery(\'' + query + '\')')
-        # result = db.engine.execute(sql)
-        # count = []
-        # for row in result:
-        #     count.append(row[0])
-        #
-        # return jsonify({'data': realties, 'count': count[0]})
+        i = 0
+        for s in title.split():
+            if i > 0:
+                query += ' & '
+            query += s
+            i += 1
+
+        sql = text(
+            'select id, "rId", title, published_on from realty where to_tsvector(title) @@ '
+            'to_tsquery(\'' + query + '\') order by published_on desc  limit ' + str(
+                limit) + ' offset ' + str(page * limit))
+        result = db.engine.execute(sql)
+        realties = []
+        for row in result:
+            realties.append({'id': row[0], 'r_id': row[1], 'title': row[2], 'published_on': row[3]})
+
+        sql = text(
+            'select count(*) from realty where to_tsvector(title) @@ '
+            'to_tsquery(\'' + query + '\')')
+        result = db.engine.execute(sql)
+        count = []
+        for row in result:
+            count.append(row[0])
+
+        return jsonify({'data': realties, 'count': count[0]})
 
 
 @app.route(API_V1 + "realties_by_cities", methods=["GET"])

@@ -27,7 +27,17 @@ angular.module('inGaiaApp')
             },
 
             searchTitle: function (query) {
-                return $http.post(baseUrl + 'search', query);
+                var payload = new FormData();
+
+                payload.append("query", query);
+
+                return $http({
+                    url: baseUrl + 'search',
+                    method: 'POST',
+                    data: payload,
+                    headers: { 'Content-Type': undefined},
+                    transformRequest: angular.identity
+                });
             },
 
             getRealtiesByCities: function() {
