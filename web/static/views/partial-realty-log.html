@@ -1,5 +1,5 @@
 <ul class="pagination">
-    <li class="page-item" ng-if="showPreviousButton" ui-sref="log({id: id, page: previousPage})">
+    <li class="page-item" ng-if="showPreviousButton" ui-sref="log({id: id, page: previousPage, asc: asc ? 1 : 0})">
         <span class="page-link" aria-label="Previous">
             <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
             <span class="sr-only">Previous</span>
@@ -8,7 +8,7 @@
 
     <li style="flex: 1;"></li>
 
-    <li class="page-item" ng-if="showNextButton" ui-sref="log({id: id, page: nextPage})">
+    <li class="page-item" ng-if="showNextButton" ui-sref="log({id: id, page: nextPage, asc: asc ? 1 : 0})">
         <span class="page-link" aria-label="Next">
             <span class="sr-only">Next</span>
             <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>
@@ -20,7 +20,7 @@
     <thead>
     <tr>
         <th>Title</th>
-        <th ng-click="toggleOrderBy()">Published On
+        <th ng-click="toggleOrderBy()" style="cursor: pointer;">Published On
             <md-icon ng-if="asc" md-font-set="material-icons">keyboard_arrow_up</md-icon>
             <md-icon ng-if="desc" md-font-set="material-icons">keyboard_arrow_down</md-icon>
         </th>
@@ -43,7 +43,7 @@
 </table>
 
 <ul class="pagination">
-    <li class="page-item" ng-if="showPreviousButton" ui-sref="log({id: id, page: previousPage})">
+    <li class="page-item" ng-if="showPreviousButton" ui-sref="log({id: id, page: previousPage, asc: asc ? 1 : 0})">
         <span class="page-link" aria-label="Previous">
             <md-icon md-font-set="material-icons">keyboard_arrow_left</md-icon>
             <span class="sr-only">Previous</span>
@@ -52,7 +52,7 @@
 
     <li style="flex: 1;"></li>
 
-    <li class="page-item" ng-if="showNextButton" ui-sref="log({id: id, page: nextPage})">
+    <li class="page-item" ng-if="showNextButton" ui-sref="log({id: id, page: nextPage, asc: asc ? 1 : 0})">
         <span class="page-link" aria-label="Next">
             <span class="sr-only">Next</span>
             <md-icon md-font-set="material-icons">keyboard_arrow_right</md-icon>

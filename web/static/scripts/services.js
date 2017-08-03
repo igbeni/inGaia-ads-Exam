@@ -6,16 +6,32 @@ angular.module('inGaiaApp')
         var baseUrl = 'http://localhost/api/v1/';
 
         return {
-            getRealties: function (page, asc) {
-                return $http.get(baseUrl + 'realties/' + page + "/" + asc);
+            getRealtiesAsc: function (page) {
+                return $http.get(baseUrl + 'realties_asc/' + page);
             },
 
-            getRealty: function (realtyId, page, asc) {
-                return $http.get(baseUrl + 'realty/' + realtyId + "/" + page + "/" + asc);
+            getRealtiesDesc: function (page) {
+                return $http.get(baseUrl + 'realties_desc/' + page);
+            },
+
+            getRealtyLogAsc: function (realtyId, page) {
+                return $http.get(baseUrl + 'realty_log_asc/' + realtyId + "/" + page);
+            },
+
+            getRealtyLogDesc: function (realtyId, page) {
+                return $http.get(baseUrl + 'realty_log_desc/' + realtyId + "/" + page);
             },
 
             getRealtyInfo: function (realtyId) {
                 return $http.get(baseUrl + 'realty-info/' + realtyId);
+            },
+
+            searchTitle: function (query) {
+                return $http.post(baseUrl + 'search', query);
+            },
+
+            getRealtiesByCities: function() {
+                return $http.get(baseUrl + 'realties_by_cities');
             }
         }
     })

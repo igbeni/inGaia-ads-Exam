@@ -1,7 +1,5 @@
 # models.py
-
 from app import db
-
 
 class State(db.Model):
     __tablename__ = 'state'

@@ -29,21 +29,21 @@
 
 <body ng-app="inGaiaApp" ng-cloak>
 
-<div layout="column">
+<div layout="column" ng-controller="IndexController">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2 flex md-truncate><a ui-sref="home({page: 0})">inGaia - Ads Exam</a></h2>
+            <h2 flex md-truncate><a ui-sref="home({page: 0, asc: 0})">inGaia - Ads Exam</a></h2>
 
-            <md-input-container md-no-float class="md-block" style="display: flex;">
-                <input ng-model="query" type="text" placeholder="Search">
-                <md-icon md-font-set="material-icons">search</md-icon>
-            </md-input-container>
+            <form ng-submit="searchTitle(query)">
+                <md-input-container md-no-float class="md-block" style="display: flex;">
+                    <input ng-model="query" type="text" placeholder="Search" style="color: white;">
+                    <md-icon md-font-set="material-icons">search</md-icon>
+                </md-input-container>
+            </form>
         </div>
     </md-toolbar>
 
-    <!--<md-content>-->
     <div ui-view></div>
-    <!--</md-content>-->
 </div>
 
 </body>
