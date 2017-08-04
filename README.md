@@ -13,8 +13,8 @@ docker-compose run web /usr/local/bin/python create_db.py
 
 É preciso importar os dados dos arquivos .csv localizados na pasta db_dump para as suas respectivas tabelas.
 
-A aplicação estará disponível em [https://localhost/](https://localhost/).
+A aplicação estará disponível em [http://localhost/](http://localhost/).
 
 ### Para executar remotamente
 
-A aplicação está disponível em [neste link](https://http://165.227.69.119/).
+A aplicação está disponível em [neste link](http://165.227.69.119/).
