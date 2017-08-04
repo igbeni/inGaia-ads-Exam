@@ -15,6 +15,10 @@ docker-compose run web /usr/local/bin/python create_db.py
 
 A aplicação estará disponível em [http://localhost/](http://localhost/).
 
+O endpoint para obter o número de imóveis por cidade é [http://localhost/api/v1/realties_by_cities](http://localhost/api/v1/realties_by_cities)
+
 ### Para executar remotamente
 
 A aplicação está disponível em [neste link](http://165.227.69.119/).
+
+O endpoint para obter o número de imóveis por cidade é [http://165.227.69.119/api/v1/realties_by_cities](http://165.227.69.119/api/v1/realties_by_cities)
