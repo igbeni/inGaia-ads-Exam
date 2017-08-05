@@ -30,8 +30,8 @@ def main():
 @app.route(API_V1 + "realties_asc", methods=["GET"])
 @app.route(API_V1 + "realties_asc/<int:page>", methods=["GET"])
 def get_realties_asc(page=0, limit=50):
-    sql = text('select id, "rId", title, published_on from realty order by published_on asc limit ' + str(
-        limit) + ' offset ' + str(page * limit))
+    sql = text('SELECT id, "rId", title, published_on FROM realty ORDER BY published_on ASC LIMIT ' + str(
+        limit) + ' OFFSET ' + str(page * limit))
     result = db.engine.execute(sql)
     realties = []
     for row in result:
@@ -43,8 +43,8 @@ def get_realties_asc(page=0, limit=50):
 @app.route(API_V1 + "realties_desc", methods=["GET"])
 @app.route(API_V1 + "realties_desc/<int:page>", methods=["GET"])
 def get_realties_desc(page=0, limit=50):
-    sql = text('select id, "rId", title, published_on from realty order by published_on desc limit ' + str(
-        limit) + ' offset ' + str(page * limit))
+    sql = text('SELECT id, "rId", title, published_on FROM realty ORDER BY published_on DESC LIMIT ' + str(
+        limit) + ' OFFSET ' + str(page * limit))
     result = db.engine.execute(sql)
     realties = []
     for row in result:
@@ -57,9 +57,9 @@ def get_realties_desc(page=0, limit=50):
 @app.route(API_V1 + "realty_log_asc/<realtyId>/<int:page>", methods=["GET"])
 def get_realty_log_asc(realtyId, page=0, limit=50):
     sql = text(
-        'select id, "rId", title, published_on from realty where "rId" = \'' + str(
-            realtyId) + '\' order by published_on asc limit ' + str(
-            limit) + ' offset ' + str(page * limit))
+        'SELECT id, "rId", title, published_on FROM realty WHERE "rId" = \'' + str(
+            realtyId) + '\' ORDER BY published_on ASC LIMIT ' + str(
+            limit) + ' OFFSET ' + str(page * limit))
     result = db.engine.execute(sql)
     realties = []
     for row in result:
@@ -72,9 +72,9 @@ def get_realty_log_asc(realtyId, page=0, limit=50):
 @app.route(API_V1 + "realty_log_desc/<realtyId>/<int:page>", methods=["GET"])
 def get_realty_log_desc(realtyId, page=0, limit=50):
     sql = text(
-        'select id, "rId", title, published_on from realty where "rId" = \'' + str(
-            realtyId) + '\' order by published_on desc limit ' + str(
-            limit) + ' offset ' + str(page * limit))
+        'SELECT id, "rId", title, published_on FROM realty WHERE "rId" = \'' + str(
+            realtyId) + '\' ORDER BY published_on DESC LIMIT ' + str(
+            limit) + ' OFFSET ' + str(page * limit))
     result = db.engine.execute(sql)
     realties = []
     for row in result:
@@ -129,16 +129,16 @@ def search_text(page=0, limit=50):
             i += 1
 
         sql = text(
-            'select id, "rId", title, published_on from realty where to_tsvector(title) @@ '
-            'to_tsquery(\'' + query + '\') order by published_on desc  limit ' + str(
-                limit) + ' offset ' + str(page * limit))
+            'SELECT id, "rId", title, published_on FROM realty WHERE to_tsvector(title) @@ '
+            'to_tsquery(\'' + query + '\') ORDER BY published_on DESC  LIMIT ' + str(
+                limit) + ' OFFSET ' + str(page * limit))
         result = db.engine.execute(sql)
         realties = []
         for row in result:
             realties.append({'id': row[0], 'r_id': row[1], 'title': row[2], 'published_on': row[3]})
 
         sql = text(
-            'select count(*) from realty where to_tsvector(title) @@ '
+            'SELECT count(*) FROM realty WHERE to_tsvector(title) @@ '
             'to_tsquery(\'' + query + '\')')
         result = db.engine.execute(sql)
         count = []
@@ -148,11 +148,24 @@ def search_text(page=0, limit=50):
         return jsonify({'data': realties, 'count': count[0]})
 
 
+@app.route(API_V1 + "posts_by_cities", methods=["GET"])
+def get_posts_by_cities():
+    sql = text(
+        'SELECT c.id, c.name, count(r.id) AS realty_number FROM realty r INNER JOIN location l ON'
+        ' r.location_id = l.id INNER JOIN city c ON l.city_id = c.id GROUP BY c.id ORDER BY realty_number DESC')
+    result = db.engine.execute(sql)
+    cities = []
+    for row in result:
+        cities.append({'id': row[0], 'name': row[1], 'realty_number': row[2]})
+
+    return jsonify({'data': cities})
+
+
 @app.route(API_V1 + "realties_by_cities", methods=["GET"])
 def get_realties_by_cities():
     sql = text(
-        'select c.id, c.name, count(r.id) as realty_number from realty r inner join location l on'
-        ' r.location_id = l.id inner join city c on l.city_id = c.id group by c.id order by realty_number desc')
+        'SELECT c.id, c.name, count(DISTINCT("rId")) AS realty_number FROM realty r INNER JOIN location l ON'
+        ' r.location_id = l.id INNER JOIN city c ON l.city_id = c.id GROUP BY c.id ORDER BY realty_number DESC')
     result = db.engine.execute(sql)
     cities = []
     for row in result:
